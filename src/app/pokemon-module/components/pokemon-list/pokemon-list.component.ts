@@ -11,7 +11,7 @@ import { Pokemon } from '../../interfaces/pokemon.character.interface';
 export class PokemonListComponent {
 
   constructor(
-    private pokemonService: PokemonServiceService
+    public pokemonService: PokemonServiceService
   ){}
 
     ngOnInit(){
