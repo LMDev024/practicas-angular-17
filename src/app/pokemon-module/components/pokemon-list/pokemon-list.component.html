@@ -3,52 +3,21 @@
   <div class="basis-3/12 bg-white h-60">
   </div>
   <div class="basis-9/12 h-auto bg-slate-600 flex flex-row justify-center">
-    <div class="basis-10/12 bg-white">
-      <table class="w-full">
-        <tr>
-            <th>Id</th>
-            <th>Name</th>
-            <th>Sprite</th>
+    <table class="bg-white my-4 basis-8/12 flex flex-col border border-solid rounded shadow-2xl">
+      <thead class="flex flex-row py-4 border border-solid">
+        <tr class="basis-full  flex flex-row text-center">
+          <td class="basis-4/12 font-mono text-xl font-bold">ID</td>
+          <td class="basis-4/12 font-mono text-xl font-bold">NAME</td>
+          <td class="basis-4/12 font-mono text-xl font-bold">SPRITE</td>
         </tr>
-        <tr *ngFor="let pokemon of pokemonService.pokemonCharacters ">
-            <td>{{pokemon.id}}</td>
-            <td >{{pokemon.name}}</td>
-            <td class="flex flex-row justify-center"><img src={{pokemon.sprites.front_default}} alt=""></td>
+      </thead>
+      <tbody class="flex flex-col">
+        <tr *ngFor="let pokemon of pokemonService.pokemonCharacters" class="basis-full flex flex-row text-center border border-solid shadow hover:shadow-lg">
+          <td class="basis-4/12 py-5"><span class="font-mono text-xl">{{pokemon.id}}</span> </td>
+          <td class="basis-4/12 py-5"><span class="font-mono text-xl">{{pokemon.name}}</span></td>
+          <td class="basis-4/12 flex flex-row justify-center"><img class="max-w-[84px] max-h-[84px] object-contain" src={{pokemon.sprites.front_default}} alt=""></td>
         </tr>
-        <!-- #region
-         <li *ngFor="let character of characterList;
-          let i = index;
-          let isFirst = first;
-          let isLast = last;
-          let isEven = even;
-          let isOdd = odd;"
-  class="list-group-item d-flex justify-content-between align-items-center"
-  [ngClass]="{'list-group-item-dark': isLast,
-              'list-group-item-primary':isEven}">
-
-<div>
-  <span class="text-primary">{{ i+1 }}. </span>
-  <span>{{ character.name }} - </span>
-  <strong>Power: </strong>
-  <span>{{character.power}}</span>
-</div>
-
-<button class="btn btn-danger" (click)="onDeleteCharacter(character.id)">X</button>
-
-</li>-->
+      </tbody>
     </table>
-    </div>
-
   </div>
-
 </div>
-
-<!-- #region
-        <div class="flex flex-col">
-        <div class="flex flex-row justify-center pt-8">
-            <div class="basis-1/12 bg-white text-center rounded-l-lg" (click)="getPokemons()">id</div>
-            <div class="basis-2/12 bg-white text-center">Nombre</div>
-            <div class="basis-3/12 bg-white text-center rounded-r-lg">Sprite</div>
-        </div>
-      </div>
--->

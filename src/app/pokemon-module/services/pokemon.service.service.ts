@@ -29,7 +29,7 @@ export class PokemonServiceService {
     }
 
     public getAllPokemonsBasic():void{
-      for (let i = 1; i < 21; i++) {
+      for (let i = 1; i < 5; i++) {
         this.getPokemonById(i).subscribe(
           (data)=>{
             let pokemon:Pokemon ={id: data.id,name: data.name,sprites:data.sprites}
