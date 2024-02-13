@@ -1,13 +1,15 @@
+import {Component} from '@angular/core';
+
 import { loadSprite } from './../../helpers/helper-functions';
-import { Component} from '@angular/core';
+import { getPokemonId } from '../../helpers/helper-functions';
 import { PokemonServiceService } from '../../services/pokemon.service.service';
 import { Pokemon} from '../../interfaces/pokemon.character.interface';
-import { getPokemonId } from '../../helpers/helper-functions';
+
 
 @Component({
   selector: 'app-pokemon-list',
   templateUrl: './pokemon-list.component.html',
-  styleUrl: './pokemon-list.component.css'
+  styleUrl: './pokemon-list.component.css',
 })
 export class PokemonListComponent {
 

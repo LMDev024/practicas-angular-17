@@ -17,7 +17,7 @@
         <tr *ngFor="let pokemon of pokemonCharacters" class="basis-full flex flex-row text-center border border-solid shadow hover:shadow-lg">
           <td class="basis-4/12 py-5"><span class="font-mono text-xl">{{pokemon.id}}</span> </td>
           <td class="basis-4/12 py-5"><span class="font-mono text-xl">{{pokemon.name}}</span></td>
-          <td class="basis-4/12 flex flex-row justify-center"><img class="max-w-[84px] max-h-[84px] object-contain" src={{pokemon.sprite.front_default}} alt=""></td>
+          <td class="basis-4/12 flex flex-row justify-center"><img loading="lazy" class="max-w-[84px] max-h-[84px] object-contain" src={{pokemon.sprite.front_default}} alt=""></td>
         </tr>
       </tbody>
     </table>

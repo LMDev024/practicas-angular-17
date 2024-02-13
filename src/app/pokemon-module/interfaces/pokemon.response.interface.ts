@@ -1,7 +1,7 @@
 export interface ApiResultPokemonCharacter {
   count: number
   next: string
-  previous: any
+  previous: string
   results: PokemonApi[]
 }
 
