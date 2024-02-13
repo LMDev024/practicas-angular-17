@@ -1,22 +1,9 @@
 <div class=" flex flex-row bg-neutral-200">
   <div class="basis-3/12 h-auto bg-yellow-300">
-    <table class="bg-white mt-4 mx-14 basis-8/12 flex flex-col border border-solid rounded shadow-2xl">
-      <thead class="flex flex-row py-4 border border-solid">
-        <tr class="basis-full  flex flex-row text-center">
-          <td class="basis-4/12 font-mono text-xl font-bold">ID</td>
-          <td class="basis-4/12 font-mono text-xl font-bold">NAME</td>
-          <td class="basis-4/12 font-mono text-xl font-bold">SPRITE</td>
-        </tr>
-      </thead>
-      <tbody class="flex flex-col">
-        <tr *ngFor="let pokemon of pokemonService.pokemonCharacters" class="basis-full flex flex-row text-center border border-solid shadow hover:shadow-lg">
-          <td class="basis-4/12 py-5"><span class="font-mono text-xl">{{pokemon.id}}</span> </td>
-          <td class="basis-4/12 py-5"><span class="font-mono text-xl">{{pokemon.name}}</span></td>
-          <td class="basis-4/12 flex flex-row justify-center"><img class="max-w-[84px] max-h-[84px] object-contain" src={{pokemon.sprites.front_default}} alt=""></td>
-        </tr>
-      </tbody>
-    </table>
+
   </div>
+
+  <!--QUITAR ESTA PARTE PARA COLOR TOP 5 FAVORITOS-->
   <div class="basis-9/12 h-auto bg-slate-600 flex flex-col justify-center">
     <table class="bg-white mt-4 mx-14 basis-8/12 flex flex-col border border-solid rounded shadow-2xl">
       <thead class="flex flex-row py-4 border border-solid">
@@ -27,17 +14,17 @@
         </tr>
       </thead>
       <tbody class="flex flex-col">
-        <tr *ngFor="let pokemon of pokemonService.pokemonCharacters" class="basis-full flex flex-row text-center border border-solid shadow hover:shadow-lg">
+        <tr *ngFor="let pokemon of pokemonCharacters" class="basis-full flex flex-row text-center border border-solid shadow hover:shadow-lg">
           <td class="basis-4/12 py-5"><span class="font-mono text-xl">{{pokemon.id}}</span> </td>
           <td class="basis-4/12 py-5"><span class="font-mono text-xl">{{pokemon.name}}</span></td>
-          <td class="basis-4/12 flex flex-row justify-center"><img class="max-w-[84px] max-h-[84px] object-contain" src={{pokemon.sprites.front_default}} alt=""></td>
+          <td class="basis-4/12 flex flex-row justify-center"><img class="max-w-[84px] max-h-[84px] object-contain" src={{pokemon.sprite.front_default}} alt=""></td>
         </tr>
       </tbody>
     </table>
       <!-- Contenedor de botones de paginación, ahora debajo de la tabla -->
   <div class="flex justify-center space-x-4 my-2">
-    <button  class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-700 disabled:bg-blue-300">Anterior</button>
-    <button  class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-700 disabled:bg-blue-300">Siguiente</button>
+    <button (click)="loadPokemons(previousPage)"  class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-700 disabled:bg-blue-300">Anterior</button>
+    <button (click)="loadPokemons(nextPage)"  class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-700 disabled:bg-blue-300">Siguiente</button>
   </div>
   </div>
 </div>

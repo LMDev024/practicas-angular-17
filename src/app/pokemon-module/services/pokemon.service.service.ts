@@ -4,15 +4,12 @@ import { Pokemon } from '../interfaces/pokemon.character.interface';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { MessageService } from './message.service';
 import { Observable } from 'rxjs';
+import { ApiResultPokemonCharacter } from '../interfaces/pokemon.response.interface';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PokemonServiceService {
-
-    private url_pokemon_list:string ='https://pokeapi.co/api/v2/pokemon/'
-
-    public pokemonCharacters: Pokemon[] =[]
 
     constructor(
       private http: HttpClient,
@@ -24,21 +21,10 @@ export class PokemonServiceService {
       this.messageService.addMessage(`PokemonApp: ${message}`);
     }
 
-    public getPokemonById( pokemonId:Number ):Observable<Pokemon>{
-      return this.http.get<Pokemon>(this.url_pokemon_list+pokemonId+'/')
+    public getPokemons(url?:string):Observable<ApiResultPokemonCharacter>{
+      const apiUrl = url || 'https://pokeapi.co/api/v2/pokemon/?offset=0&limit=4';
+
+      return this.http.get<ApiResultPokemonCharacter>(apiUrl);
     }
 
-    public getAllPokemonsBasic():void{
-      for (let i = 1; i < 5; i++) {
-        this.getPokemonById(i).subscribe(
-          (data)=>{
-            let pokemon:Pokemon ={id: data.id,name: data.name,sprites:data.sprites}
-            this.pokemonCharacters.push(pokemon)
-          },
-          error => {
-            console.error('There was an error!', error);
-          }
-        )
-      }
-    }
 }

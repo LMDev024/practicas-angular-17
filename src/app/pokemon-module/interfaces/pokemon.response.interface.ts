@@ -1,11 +1,11 @@
-export interface Root {
+export interface ApiResultPokemonCharacter {
   count: number
   next: string
   previous: any
-  results: Result[]
+  results: PokemonApi[]
 }
 
-export interface Result {
+export interface PokemonApi {
   name: string
   url: string
 }
