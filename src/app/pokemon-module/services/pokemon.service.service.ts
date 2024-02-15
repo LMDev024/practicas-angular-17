@@ -4,6 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { MessageService } from './message.service';
 import { catchError,map,tap, Observable, of } from 'rxjs';
 import { ApiResultPokemonCharacter } from '../interfaces/pokemon.response.interface';
+import { PokemonCharacterData } from '../interfaces/pokemon.data.character.interface';
 
 
 @Injectable({
@@ -53,4 +54,11 @@ export class PokemonServiceService {
         )
     }
 
+    public getPokemonByName(name:string):Observable<PokemonCharacterData>{
+      const apiUrl = 'https://pokeapi.co/api/v2/pokemon/'+name
+      return this.http.get<PokemonCharacterData>(apiUrl)
+        .pipe(
+          catchError(this.handleError<PokemonCharacterData>('getPokemonByName'))
+        )
+    }
 }
