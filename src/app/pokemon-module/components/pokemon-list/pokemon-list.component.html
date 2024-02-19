@@ -1,7 +1,7 @@
 <div class=" flex flex-row bg-neutral-200">
   <div class="basis-3/12 h-auto flex flex-col">
     <div class=" flex flex-row justify-center mt-3">
-      <input [(ngModel)]="pokemonSearchName" type="text" name="search pokemon" id="search-pokemon" placeholder="Search pokemon" class="py-1 my-1 rounded"/>
+      <input (keyup.enter)="searchPokemonByName()"   [(ngModel)]="pokemonSearchName" type="text" name="search pokemon" id="search-pokemon" placeholder="Search pokemon" class="py-1 my-1 rounded"/>
       <button 
         (click)="searchPokemonByName()"
         type="button"
@@ -15,15 +15,24 @@
     </div>
     <div class="mx-4 my-10">
       <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-        <a href="#">
-            <img class="rounded-t-lg" src={{pokemonSearched.sprites.front_default}} alt="" />
-        </a>
-        <div class="p-5">
-            <a href="#">
-                <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{pokemonSearched.name}}</h5>
-            </a>
-            <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Conoce a <span class="font-bold">{{ pokemonSearched.name }}</span>, un Pokémon de tipo <span class="font-bold">{{ pokemonSearched.types | joinTypes }}</span>. Este Pokémon es conocido por sus habilidades <span class="font-bold">{{pokemonSearched.abilities | joinAbilities }}</span> y tiene una altura de <span class="font-bold">{{ pokemonSearched.height }}</span> cm.</p>
+        <div *ngIf="isPokemonSearched; else showDefaultContent">
+            <div class="flex flex-row">
+              <img class="rounded-t-lg" src={{pokemonSearched.sprites.front_default}} alt="" />
+              <img class="rounded-t-lg" src={{pokemonSearched.sprites.back_default}} alt="" />
+              <img class="rounded-t-lg" src={{pokemonSearched.sprites.front_shiny}} alt="" />
+            </div>
+            <div class="p-4">
+                <span>
+                    <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{pokemonSearched.name}}</h5>
+                </span>
+                <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Conoce a <span class="font-bold">{{ pokemonSearched.name }}</span>, un Pokémon de tipo <span class="font-bold">{{ pokemonSearched.types | joinTypes }}</span>. Este Pokémon es conocido por sus habilidades <span class="font-bold">{{pokemonSearched.abilities | joinAbilities }}</span> y tiene una altura de <span class="font-bold">{{ pokemonSearched.height }}</span> cm.</p>
+            </div>
         </div>
+        <ng-template #showDefaultContent>
+          <div class="flex justify-center items-center py-10">
+            <img class="rounded-t-lg" src="../../../../assets/background.png" alt="Imagen predeterminada"/>
+          </div>
+        </ng-template>
       </div>
     </div>
   </div>

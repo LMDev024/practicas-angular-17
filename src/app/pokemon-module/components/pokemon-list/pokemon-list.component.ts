@@ -1,10 +1,10 @@
+import { PokemonCharacterData } from './../../interfaces/pokemon.data.character.interface';
 import {Component} from '@angular/core';
 
 import { loadSprite, createEmptyPokemonCharacter } from './../../helpers/helper-functions';
 import { getPokemonId } from '../../helpers/helper-functions';
 import { PokemonServiceService } from '../../services/pokemon.service.service';
 import { Pokemon} from '../../interfaces/pokemon.character.interface';
-import { PokemonCharacterData } from '../../interfaces/pokemon.data.character.interface';
 
 
 @Component({
@@ -14,6 +14,8 @@ import { PokemonCharacterData } from '../../interfaces/pokemon.data.character.in
 })
 export class PokemonListComponent {
 
+
+  public isPokemonSearched:boolean = false;
   public pokemonCharacters:Pokemon[]=[];
   public pokemonSearchName: string = ''
   public pokemonSearched: PokemonCharacterData = createEmptyPokemonCharacter()
@@ -58,8 +60,11 @@ export class PokemonListComponent {
       this.pokemonService.getPokemonByName(this.pokemonSearchName).subscribe({
         next: (data:PokemonCharacterData)=>{
           this.pokemonSearched = data
+          this.isPokemonSearched = true
+          if(data === undefined || !(data && 'name' in data)  ) this.isPokemonSearched = false
         },
         error:(error)=>{
+          
           console.error('Error al cargar el pokemon: ', error);
         }
       })
